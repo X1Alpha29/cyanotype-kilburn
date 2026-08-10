@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import GalleryGrid from "@/components/gallery/GalleryGrid";
 
 export default function Home() {
   return (
@@ -9,11 +10,26 @@ export default function Home() {
       <main>
         <Hero />
 
-        <section id="work">
-          <div className="section-placeholder">
-            <p>THE WORK</p>
-            <h2>Gallery coming next.</h2>
+        <section id="work" className="work-section">
+          <div className="section-heading">
+            <div>
+              <p className="section-eyebrow">
+                SELECTED WORK
+              </p>
+
+              <h2>
+                Made with
+                <span>sunlight.</span>
+              </h2>
+            </div>
+
+            <p className="section-introduction">
+              Cyanotype prints created through sunlight,
+              natural materials and experimentation.
+            </p>
           </div>
+
+          <GalleryGrid />
         </section>
       </main>
     </>
