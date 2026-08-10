@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
+import EventFeature from "@/components/sections/EventFeature";
 
 export default function Home() {
   return (
@@ -30,7 +31,10 @@ export default function Home() {
           </div>
 
           <GalleryGrid />
+
         </section>
+        
+        <EventFeature />
       </main>
     </>
   );
