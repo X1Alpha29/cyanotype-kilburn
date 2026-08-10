@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { GalleryItemData } from "@/lib/gallery";
 
 type Props = {
@@ -19,22 +19,27 @@ export default function Lightbox({
   onNext,
   onPrevious,
 }: Props) {
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
   useEffect(() => {
     if (!activeItem) {
       return;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+      switch (event.key) {
+        case "Escape":
+          onClose();
+          break;
 
-      if (event.key === "ArrowRight") {
-        onNext();
-      }
+        case "ArrowRight":
+          onNext();
+          break;
 
-      if (event.key === "ArrowLeft") {
-        onPrevious();
+        case "ArrowLeft":
+          onPrevious();
+          break;
       }
     };
 
@@ -72,6 +77,54 @@ export default function Lightbox({
     (item) => item.id === activeItem.id
   );
 
+  const handlePointerDown = (
+    event: React.PointerEvent
+  ) => {
+    if (event.pointerType === "mouse") {
+      return;
+    }
+
+    touchStartX.current = event.clientX;
+    touchStartY.current = event.clientY;
+  };
+
+  const handlePointerUp = (
+    event: React.PointerEvent
+  ) => {
+    if (
+      touchStartX.current === null ||
+      touchStartY.current === null
+    ) {
+      return;
+    }
+
+    const deltaX =
+      event.clientX - touchStartX.current;
+
+    const deltaY =
+      event.clientY - touchStartY.current;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    const minimumSwipeDistance = 60;
+
+    const isHorizontalSwipe =
+      Math.abs(deltaX) >
+      Math.abs(deltaY);
+
+    if (
+      isHorizontalSwipe &&
+      Math.abs(deltaX) >= minimumSwipeDistance
+    ) {
+      if (deltaX < 0) {
+        onNext();
+      } else {
+        onPrevious();
+      }
+    }
+  };
+
   return (
     <div
       className="lightbox"
@@ -105,15 +158,20 @@ export default function Lightbox({
           ←
         </button>
 
-        <div className="lightbox-image-container">
+        <div
+          className="lightbox-image-container"
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+        >
           <Image
+            key={activeItem.id}
             src={activeItem.src}
             alt={activeItem.title}
             fill
             sizes="90vw"
             className="lightbox-image"
             priority
-          />
+            />
         </div>
 
         <button
@@ -133,7 +191,9 @@ export default function Lightbox({
 
             <h2>{activeItem.title}</h2>
 
-            <p>{activeItem.description}</p>
+            <p>
+              {activeItem.description}
+            </p>
           </div>
 
           <span className="lightbox-counter">
