@@ -1,4 +1,4 @@
-export type GalleryItem = {
+export type GalleryItemData = {
   id: number;
   src: string;
   title: string;
@@ -8,7 +8,7 @@ export type GalleryItem = {
   orientation: "portrait" | "landscape";
 };
 
-export const galleryItems: GalleryItem[] = [
+export const galleryItems: GalleryItemData[] = [
   {
     id: 1,
     src: "/images/placeholder-hero.jpg",
