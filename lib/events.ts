@@ -31,3 +31,9 @@ export const events: EventData[] = [
     ],
   },
 ];
+
+export function getEventById(
+  id: number
+): EventData | undefined {
+  return events.find((event) => event.id === id);
+}

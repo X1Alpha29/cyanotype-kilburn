@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-background">
         <Image
-          src="/images/placeholder-hero.jpg"
+          src="/images/hero.jpg"
           alt="Artist working on a cyanotype-inspired artwork"
           fill
           priority

@@ -33,6 +33,7 @@ export default function Home() {
 
   const closeImage = useCallback(() => {
     setActiveImage(null);
+    setActiveCollection([]);
   }, []);
 
   const showNext = useCallback(() => {
