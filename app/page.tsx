@@ -1,20 +1,21 @@
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+
 export default function Home() {
   return (
-    <main>
-      <section>
-        <p>CYANOTYPE WORKSHOPS</p>
+    <>
+      <Navbar />
 
-        <h1>
-          Kilburn
-          <br />
-          in Blue
-        </h1>
+      <main>
+        <Hero />
 
-        <p>
-          Cyanotype workshops, artwork and creative experiments
-          in the parks of London.
-        </p>
-      </section>
-    </main>
+        <section id="work">
+          <div className="section-placeholder">
+            <p>THE WORK</p>
+            <h2>Gallery coming next.</h2>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
