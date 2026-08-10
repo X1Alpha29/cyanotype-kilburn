@@ -1,8 +1,27 @@
 import Image from "next/image";
 import { events } from "@/lib/events";
+import type { LightboxImage } from "@/lib/gallery";
 
-export default function EventFeature() {
+type Props = {
+  onOpenImage: (
+    image: LightboxImage,
+    collection: LightboxImage[]
+  ) => void;
+};
+
+export default function EventFeature({
+  onOpenImage,
+}: Props) {
   const event = events[0];
+  const eventImages: LightboxImage[] =
+  event.images.map((image, index) => ({
+    id: `event-${event.id}-${index}`,
+    src: image,
+    title: `${event.title} — ${event.subtitle}`,
+    description:
+      `Photograph from Event ${event.number} at ${event.location}.`,
+    location: event.location,
+  }));
 
   return (
     <section
@@ -81,18 +100,26 @@ export default function EventFeature() {
 
       <div className="event-gallery">
         {event.images.map((image, index) => (
-          <div
+          <button
             key={`${image}-${index}`}
+            type="button"
             className={`event-gallery-item event-gallery-item--${index + 1}`}
-          >
+            onClick={() =>
+                onOpenImage(
+                    eventImages[index],
+                    eventImages
+                )
+            }
+            aria-label={`Open event photograph ${index + 1}`}
+            >
             <Image
-              src={image}
-              alt={`${event.title} workshop photograph ${index + 1}`}
-              fill
-              sizes="(max-width: 700px) 100vw, 50vw"
-              className="event-gallery-image"
+                src={image}
+                alt={`${event.title} workshop photograph ${index + 1}`}
+                fill
+                sizes="(max-width: 700px) 100vw, 50vw"
+                className="event-gallery-image"
             />
-          </div>
+            </button>
         ))}
       </div>
 

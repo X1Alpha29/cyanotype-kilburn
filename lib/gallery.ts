@@ -8,6 +8,14 @@ export type GalleryItemData = {
   orientation: "portrait" | "landscape";
 };
 
+export type LightboxImage = {
+  id: string | number;
+  src: string;
+  title: string;
+  description: string;
+  location: string;
+};
+
 export const galleryItems: GalleryItemData[] = [
   {
     id: 1,

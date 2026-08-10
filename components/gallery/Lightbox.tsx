@@ -2,18 +2,18 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import type { GalleryItemData } from "@/lib/gallery";
+import type { LightboxImage } from "@/lib/gallery";
 
 type Props = {
-  items: GalleryItemData[];
-  activeItem: GalleryItemData | null;
+  items?: LightboxImage[];
+  activeItem: LightboxImage | null;
   onClose: () => void;
   onNext: () => void;
   onPrevious: () => void;
 };
 
 export default function Lightbox({
-  items,
+  items = [],
   activeItem,
   onClose,
   onNext,
@@ -69,7 +69,7 @@ export default function Lightbox({
     onPrevious,
   ]);
 
-  if (!activeItem) {
+  if (!activeItem || items.length === 0) {
     return null;
   }
 
@@ -171,7 +171,7 @@ export default function Lightbox({
             sizes="90vw"
             className="lightbox-image"
             priority
-            />
+          />
         </div>
 
         <button
@@ -191,13 +191,14 @@ export default function Lightbox({
 
             <h2>{activeItem.title}</h2>
 
-            <p>
-              {activeItem.description}
-            </p>
+            <p>{activeItem.description}</p>
           </div>
 
           <span className="lightbox-counter">
-            {currentIndex + 1} / {items.length}
+            {currentIndex >= 0
+              ? currentIndex + 1
+              : 0}{" "}
+            / {items.length}
           </span>
         </div>
       </div>
