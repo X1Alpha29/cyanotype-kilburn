@@ -185,12 +185,7 @@ export default function Lightbox({
 
         <div className="lightbox-caption">
           <div>
-            <p className="lightbox-location">
-              {activeItem.location}
-            </p>
-
             <h2>{activeItem.title}</h2>
-
             <p>{activeItem.description}</p>
           </div>
 

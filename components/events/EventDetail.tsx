@@ -106,9 +106,6 @@ export default function EventDetail({
           </div>
 
           <div className="event-detail-heading">
-            <p className="section-eyebrow">
-              {event.location}
-            </p>
 
             <h1>
               {event.title}

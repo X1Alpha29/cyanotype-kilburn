@@ -17,12 +17,12 @@ type Props = {
 export default function GalleryGrid({
   onOpen,
 }: Props) {
-  const handleOpen = useCallback(
-  (item: GalleryItemData) => {
-    onOpen(item, galleryItems);
-  },
-  [onOpen]
-);
+    const handleOpen = useCallback(
+    (item: GalleryItemData) => {
+        onOpen(item, galleryItems);
+    },
+    [onOpen]
+    );
 
   return (
     <div className="gallery-grid">

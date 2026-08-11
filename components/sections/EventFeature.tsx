@@ -35,10 +35,6 @@ export default function EventFeature({
         </div>
 
         <div className="event-heading">
-          <p className="section-eyebrow">
-            {event.location}
-          </p>
-
           <h2>
             {event.title}
             <span>{event.subtitle}</span>
@@ -103,23 +99,29 @@ export default function EventFeature({
           <button
             key={`${image}-${index}`}
             type="button"
-            className={`event-gallery-item event-gallery-item--${index + 1}`}
+            className={`event-gallery-item event-gallery-item--${
+              index + 1
+            }`}
             onClick={() =>
-                onOpenImage(
-                    eventImages[index],
-                    eventImages
-                )
+              onOpenImage(
+                eventImages[index],
+                eventImages
+              )
             }
-            aria-label={`Open event photograph ${index + 1}`}
-            >
+            aria-label={`Open event photograph ${
+              index + 1
+            }`}
+          >
             <Image
-                src={image}
-                alt={`${event.title} workshop photograph ${index + 1}`}
-                fill
-                sizes="(max-width: 700px) 100vw, 50vw"
-                className="event-gallery-image"
+              src={image}
+              alt={`${event.title} workshop photograph ${
+                index + 1
+              }`}
+              fill
+              sizes="(max-width: 700px) 100vw, 50vw"
+              className="event-gallery-image"
             />
-            </button>
+          </button>
         ))}
       </div>
 

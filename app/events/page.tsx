@@ -36,10 +36,6 @@ export default function EventsPage() {
 
             <div className="event-card-content">
               <div className="event-card-heading">
-                <p className="section-eyebrow">
-                  {event.location}
-                </p>
-
                 <h2>
                   {event.title}
                   <span>{event.subtitle}</span>

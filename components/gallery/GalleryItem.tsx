@@ -33,10 +33,6 @@ export default function GalleryItem({
 
           <div className="gallery-overlay">
             <div className="gallery-info">
-              <p className="gallery-location">
-                {item.location}
-              </p>
-
               <h3>{item.title}</h3>
 
               <p className="gallery-description">
