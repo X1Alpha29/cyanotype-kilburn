@@ -8,6 +8,7 @@ export type EventData = {
   description: string;
   heroImage: string;
   images: string[];
+  hosts?: string;
 };
 
 export const events: EventData[] = [
@@ -16,18 +17,19 @@ export const events: EventData[] = [
     number: "03",
     title: "Cyanotype",
     subtitle: "In the Park",
-    location: "Kilburn Park, London",
-    date: "Summer 2026",
+    location: "Kilburn",
+    date: "15 August 2026",
+    hosts: "By Nidhi & Leah",
 
     description:
-      "An outdoor cyanotype workshop exploring sunlight, natural materials and the beautiful unpredictability of handmade photographic prints.",
+      "A cyanotype workshop exploring sunlight, natural materials and the beautiful unpredictability of handmade photographic prints.",
 
-    heroImage: "/images/placeholder-hero.jpg",
+    heroImage: "/images/about/kilburn-building.png",
 
     images: [
-      "/images/placeholder-hero.jpg",
-      "/images/placeholder-hero.jpg",
-      "/images/placeholder-hero.jpg",
+      "/images/events/event-03/cat1.png",
+      "/images/events/event-03/Moon.png",
+      "/images/events/event-03/dog.png",
     ],
   },
 ];

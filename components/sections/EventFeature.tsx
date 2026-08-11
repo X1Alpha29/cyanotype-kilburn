@@ -43,6 +43,10 @@ export default function EventFeature({
 
         <div className="event-meta">
           <span>{event.date}</span>
+
+          {event.hosts && (
+            <span>{event.hosts}</span>
+          )}
         </div>
       </div>
 

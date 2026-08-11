@@ -89,10 +89,8 @@ export default function Navbar() {
           </a>
 
           <a
-            href="#about"
-            onClick={(event) =>
-              handleNavigation(event, "#about")
-            }
+            href="/about"
+            onClick={() => setMenuOpen(false)}
           >
             About
           </a>
