@@ -1,9 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  const resetScroll = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  };
+
+  resetScroll();
+
+  const frame = requestAnimationFrame(() => {
+    resetScroll();
+  });
+
+  return () => {
+    cancelAnimationFrame(frame);
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "auto";
+    }
+  };
+}, []);
+  
 
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
